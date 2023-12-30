@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        /* Add additional styles as needed */
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dinesh Kumar's Blog</h1>
+    </header>
+    
+    <div class="container">
+        
+        <h1 class="mb-4">Blog Articles</h1>
+        <a href="/articles/new" class="btn btn-success">New Article</a>
+        <% var array = Array.from(articles); %>
+
+        <% array.forEach(article => { %>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                    <small><%= article.createdAt.toLocaleDateString() %></small>
+                </div>
+                <div class="card-body">
+                    <p><%= article.description %></p>
+                </div>
+                <div class="card-footer">
+                    <a href="/articles/<%= article.id %>" class="btn btn-primary">Read More</a>
+                    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+
+        
+    </div>
+    <footer>
+        <p>&copy; 2023 Your Blog</p>
+    </footer>
+    
+    
+</body>
+</html>
